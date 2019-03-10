@@ -1,0 +1,62 @@
+focal_x : 589.948587
+focal_y : 591.04734832
+cx : 337.48016869
+cy : 253.006748943
+depthFx : 589.948608
+depthFy : 591.047363
+depthCx : 337.480164
+depthCy : 253.006744
+#point cloud construct
+maxDepth : 3.0
+minDepth : 1.0
+voxelSize : 0.03
+decimation : 4
+noiseFilterRadius : 0.2
+noiseFilterMinNeighbors : 1
+normalK : 10
+normalRadius : 0.2
+#extracting planes
+leafSize : 0.03
+distThreshold : 0.03
+maxIteration : 1000
+
+dot_up_wall_thresh : 0.35
+distance_wall_thresh : 0.2
+dot_quad_merged_thresh : 0.9
+rate_rest_thresh : 0.2
+
+# Mesh Saving (location + desired Name without ending)
+saveMesh : true
+plyLocation : /home/dev/ply/
+planesFile : /home/dev/ply/planes.ply
+
+voxel_resolution : 0.02
+seed_resolution : 0.2
+color_importance : 0.2
+spatial_importance : 0.4
+normal_importance : 1.0
+point_size : 4.0
+
+object_top : 1.2
+object_depth : 1
+max_object_size : 1.2
+min_object_size : 0.2
+
+z_bottom : 0.0
+wall_height : 1.8
+#Eucleadian clustering
+min_cluster_size : 50
+max_cluster_size : 35000
+cluster_tolerance : 0.35 #0.025
+#Eucleadian clustering
+min_object_cluster_size : 10
+max_object_cluster_size : 35000
+object_cluster_tolerance : 0.25 #0.045
+
+quad_dot_thresh : 0.9
+quad_width_thresh : 0.8
+quad_height_thresh : 0.8
+dist_quad_thresh : 0.5
+connect_dist : 0.8
+delta_plane : 0.1
+toleranceFrames : 30

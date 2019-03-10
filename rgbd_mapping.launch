@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<launch>
+
+<!-- Use the algorithm together with a Bagfile, assumes that pose is recorded (as TF) -->
+	<!--<arg name="camera_name" value="/camera"/>-->
+	<arg name="rviz" default="true" />
+	<!-- Run Bagfile -->
+       <!--<node pkg="rosbag" type="play" name="player" output="screen" args="clock /home/dev/Downloads/asus_100t/sdbrdo2.bag"/>-->
+       <!--<node ns="key" name="keyboard_event_publisher" pkg="keyboard_reader" type="keyboard_event_publisher" respawn="true" />-->
+       <!-- Run fastfusion_node-->
+	<node  name="rgbd_mapping" pkg="rgbd_mapping" type="rgbd_mapping" clear_params="true" output="screen">
+		<remap from="image_depth"		to="/asus/depth/image" />
+		<remap from="image_rgb"		        to="/asus/rgb/image_raw" />
+		<remap from="odom_pose"		        to="/asus/odometry" />
+		<!-- Load parameters -->
+		<param name="octomap" type="int" value="0"/>
+ 		<rosparam file="/home/dev/launch/rgbd_mapping/params.yaml"/> 
+	</node>
+<!--	<node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+		<param name="resolution" value="0.1" />
+		
+		<param name="frame_id" type="string" value="world" />
+		<param name="sensor_model/max_range" value="-1" />
+		<remap from="cloud_in" to="global_cloud" />
+	</node>-->
+	<node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz" args="-d /home/dev/launch/rgbd_mapping/config/rgbd_mapping.rviz"/>
+</launch>
+<!--command for installing octomap server -->
+<!--sudo apt-get install ros-indigo-octomap ros-indigo-octomap-mapping-->
